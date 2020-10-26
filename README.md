@@ -1,4 +1,4 @@
-# EndAfricaBleeding
+# EndAnglephoneCrisis
 
 This bot can use an infinite number of accounts to tweet !
 
