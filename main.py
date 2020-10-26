@@ -1,13 +1,32 @@
 import time
 from os import system
-from random import randint
+from random import randint, shuffle
 import json 
+import uuid
 
 
-tweet = "\
-End War, please !!! \
-#EndAnglophoneCrisis \
-#KumbaMassacre #e112233 "
+tweets_hashtags = [
+    "#EndAnglophoneCrisis",
+    "",
+    "#KumbaMassacre",
+    "",
+    "#e112233",
+]
+
+
+
+def generate_sentence():
+    final_tweet = ""
+    tweet_words = str(uuid.uuid4()).split("-")
+    shuffle(tweets_hashtags)
+    shuffle(tweet_words)
+    for i in range(5):
+        if i%2 == 0:
+            final_tweet += tweet_words[i] + " " + tweets_hashtags[i] + " "
+        else:
+            final_tweet += tweets_hashtags[i] + " " + tweet_words[i] + " "
+
+    return final_tweet
 
 
 def send_tweet():
@@ -42,7 +61,7 @@ def send_tweet():
             -H 'accept-language: en-US,en;q=0.9' \
             -H 'cookie: {}' \
             --data-raw 'include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&simple_quoted_tweet=true&trim_user=false&include_ext_media_color=true&include_ext_media_availability=true&auto_populate_reply_metadata=false&batch_mode=off&status={} {}' \
-            --compressed > out.json".format(a["authorization"], a["x_csrf_token"], a["cookie"], tweet, str(randint(0, 99999999999))) )
+            --compressed > out.json".format(a["authorization"], a["x_csrf_token"], a["cookie"], generate_sentence(), str(randint(0, 99999999999))) )
             
             time.sleep(1)
 
