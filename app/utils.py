@@ -38,9 +38,9 @@ def generate_sentence():
         else:
             # then shuffle the message here
             if i%2 == 0:
-                final_tweet += " " + tweet_words[i] + " " + tweets_hashtags[i] + " "
+                final_tweet += " " + tweet_words[i] + tweets_hashtags[i]
             else:
-                final_tweet += " " + tweets_hashtags[i] + " " + tweet_words[i] + " "
+                final_tweet += tweets_hashtags[i] + tweet_words[i] + " "
 
         if "@jack" not in final_tweet:
             final_tweet += " " + str(randint(0, 99999999999))
