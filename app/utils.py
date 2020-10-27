@@ -1,26 +1,45 @@
 import time
 from os import system
-from random import randint, shuffle
+from random import randint, shuffle, randrange
 import json 
 import uuid
 
 
 tweets_hashtags = [
     "#EndAnglophoneCrisis",
-    "",
     "#KumbaMassacre",
-    "",
     "#e112233",
 ]
 
 
+def random_sentence():
+    """
+
+    This method will return a random sentence
+
+    """
+
+    nouns = ("War", "Fight", "Kill", "Destroy", "Massacre")
+    verbs = ("is", "is", "is", "is", "is", ) 
+    adv = ("really.", "absolutely.", "foolishly.", "horibly.")
+    adj = ("not fair", "clueless", "dirty", "bad", "stupid")
+    num = randrange(0,5)
+    return nouns[num] + ' ' + verbs[num] + ' ' + adv[num] + ' ' + adj[num]
+
 
 def generate_sentence():
-    final_tweet = ""
+    """
+
+    This will generate a new sentence
+
+    """
+
+    final_tweet = random_sentence()
+
     tweet_words = str(uuid.uuid4()).split("-")
     shuffle(tweets_hashtags)
     shuffle(tweet_words)
-    for i in range(5):
+    for i in range(3):
         if i%2 == 0:
             final_tweet += tweet_words[i] + " " + tweets_hashtags[i] + " "
         else:
@@ -67,6 +86,12 @@ def send_tweet():
 
 
 def test_json():
+    """
+
+    Just a function to test the validity of a json file
+
+    """
+
     try:
         print(json.loads(open("./out.json")))
     except Exception as es:
@@ -76,29 +101,21 @@ def test_json():
     return True
 
 
-def main():
+def proceed():
     """
 
-    The basic main method to send all over the time
+    Per round, what it is done
 
     """
-    try:
-        while True:
-            send_tweet()
-            # We check if the limit have been reach
-            with open("./out.json", "r") as filek:
-                if "errors" in filek.read() :
-                    print("\n--- LIMIT REACHED ---")
-                    print("\n--- WAITING FOR 1HOURS ---")
-                    time.sleep(3600)
-                else:
-                    # we choose a random waiting range from 5s to 35s
-                    time.sleep(randint(10, 35))
-            print("\n---------------------")
-    except KeyboardInterrupt:
-        print("[x] Bot stoped")
 
-
-if __name__ == "__main__":
-    main()
-
+    send_tweet()
+    # We check if the limit have been reach
+    with open("./out.json", "r") as filek:
+        if "errors" in filek.read() :
+            print("\n--- LIMIT REACHED ---")
+            print("\n--- WAITING FOR 1HOURS ---")
+            time.sleep(3600)
+        else:
+            # we choose a random waiting range from 5s to 35s
+            time.sleep(randint(10, 35))
+    print("\n---------------------")

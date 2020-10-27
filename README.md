@@ -13,7 +13,7 @@ This bot can use an infinite number of accounts to tweet !
 
 - Just follow steps on this demo video : [DEMO/TUTO](https://www.loom.com/share/b13885813c7146cf96c506414e7b9501)
 
-- Then launch the application with `python main.py`.
+- Then launch the application with `python -m app.main`.
 
 - No need to install a requirement library.
 
