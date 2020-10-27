@@ -32,7 +32,7 @@ def generate_sentence():
     shuffle(tweet_words)
     for i in range(3):
         # Let's randomize the sending of this tweet
-        if randint(0, 50)%7 == 0:
+        if randint(2, 50)%13 == 0:
             final_tweet = "Hey @jack, you helped amplify the voices of millions of Nigerians by giving a custom emoji for the EndSARS movement "
             final_tweet += "Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard, please."
         else:
