@@ -6,9 +6,9 @@ def shuffle_tuple(tup):
 
 
 tweets_hashtags = [
-    "#EndAnglophoneCrisis",
-    "#KumbaMassacre",
-    "#e112233",
+    " #EndAnglophoneCrisis ",
+    " #KumbaMassacre ",
+    " #e112233 ",
 ]
 
 nouns = shuffle_tuple(
