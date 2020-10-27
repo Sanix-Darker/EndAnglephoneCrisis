@@ -31,10 +31,18 @@ def generate_sentence():
     shuffle(tweets_hashtags)
     shuffle(tweet_words)
     for i in range(3):
-        if i%2 == 0:
-            final_tweet += tweet_words[i] + " " + tweets_hashtags[i] + " "
+        # Let's randomize the sending of this tweet
+        if randint(0, 30)%5 == 0:
+            final_tweet = "Hey, \
+                @jack \
+                we saw how you helped amplify the voices of millions of Nigerians by giving them a custom emoji for the #EndSARS movement \
+                Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard"
         else:
-            final_tweet += tweets_hashtags[i] + " " + tweet_words[i] + " "
+            # then shuffle the message here
+            if i%2 == 0:
+                final_tweet += tweet_words[i] + " " + tweets_hashtags[i] + " "
+            else:
+                final_tweet += tweets_hashtags[i] + " " + tweet_words[i] + " "
 
     return final_tweet
 
@@ -50,7 +58,7 @@ def send_tweet():
     with open("./accounts.json", "r") as filek:
         accounts = json.loads(filek.read())
         for a in accounts:
-
+            # We just make cURL command
             system("curl 'https://mobile.twitter.com/i/api/1.1/statuses/update.json' \
             -H 'authority: mobile.twitter.com' \
             -H 'pragma: no-cache' \
