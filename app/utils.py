@@ -33,16 +33,17 @@ def generate_sentence():
     for i in range(3):
         # Let's randomize the sending of this tweet
         if randint(0, 30)%5 == 0:
-            final_tweet = "Hey, \
-                @jack, \
-                you helped amplify the voices of millions of Nigerians by giving a custom emoji for the EndSARS movement \
-                Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard, please."
+            final_tweet = "Hey @jack, you helped amplify the voices of millions of Nigerians by giving a custom emoji for the EndSARS movement "
+            final_tweet += "Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard, please."
         else:
             # then shuffle the message here
             if i%2 == 0:
                 final_tweet += tweet_words[i] + " " + tweets_hashtags[i] + " "
             else:
                 final_tweet += tweets_hashtags[i] + " " + tweet_words[i] + " "
+
+        if "@jack" not in final_tweet:
+            final_tweet += " " + str(randint(0, 99999999999))
 
     return final_tweet
 
@@ -58,6 +59,7 @@ def send_tweet():
     with open("./accounts.json", "r") as filek:
         accounts = json.loads(filek.read())
         for a in accounts:
+
             # We just make cURL command
             system("curl 'https://mobile.twitter.com/i/api/1.1/statuses/update.json' \
             -H 'authority: mobile.twitter.com' \
@@ -78,8 +80,8 @@ def send_tweet():
             -H 'referer: https://mobile.twitter.com/compose/tweet' \
             -H 'accept-language: en-US,en;q=0.9' \
             -H 'cookie: {}' \
-            --data-raw 'include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&simple_quoted_tweet=true&trim_user=false&include_ext_media_color=true&include_ext_media_availability=true&auto_populate_reply_metadata=false&batch_mode=off&status={} {}' \
-            --compressed > out.json".format(a["authorization"], a["x_csrf_token"], a["cookie"], generate_sentence(), str(randint(0, 99999999999))) )
+            --data-raw 'include_profile_interstitial_type=1&include_blocking=1&include_blocked_by=1&include_followed_by=1&include_want_retweets=1&include_mute_edge=1&include_can_dm=1&include_can_media_tag=1&skip_status=1&cards_platform=Web-12&include_cards=1&include_ext_alt_text=true&include_quote_count=true&include_reply_count=1&tweet_mode=extended&simple_quoted_tweet=true&trim_user=false&include_ext_media_color=true&include_ext_media_availability=true&auto_populate_reply_metadata=false&batch_mode=off&status={}' \
+            --compressed > out.json".format(a["authorization"], a["x_csrf_token"], a["cookie"], generate_sentence()))
             
             time.sleep(1)
 
