@@ -34,9 +34,9 @@ def generate_sentence():
         # Let's randomize the sending of this tweet
         if randint(0, 30)%5 == 0:
             final_tweet = "Hey, \
-                @jack \
-                we saw how you helped amplify the voices of millions of Nigerians by giving them a custom emoji for the #EndSARS movement \
-                Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard"
+                @jack, \
+                you helped amplify the voices of millions of Nigerians by giving a custom emoji for the EndSARS movement \
+                Can #EndAnglophoneCrisis get one too? Cameroon is bleeding, our voices MUST be heard, please."
         else:
             # then shuffle the message here
             if i%2 == 0:
