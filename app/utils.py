@@ -108,5 +108,5 @@ def proceed():
             time.sleep(3600)
         else:
             # we choose a random waiting range from 5s to 35s
-            time.sleep(randint(10, 35))
+            time.sleep(randint(20, 50))
     print("\n---------------------")
