@@ -21,10 +21,10 @@ def random_sentence():
 
     nouns = ("War", "Fight", "Kill", "Destroy", "Massacre")
     verbs = ("is", "is", "is", "is", "is", ) 
-    adv = ("really.", "absolutely.", "foolishly.", "horibly.")
-    adj = ("not fair", "clueless", "dirty", "bad", "stupid")
+    adv = ("really", "absolutely", "foolishly", "horibly")
+    adj = ("not fair.", "clueless.", "dirty.", "bad.", "stupid.")
     num = randrange(0,5)
-    return nouns[num] + ' ' + verbs[num] + ' ' + adv[num] + ' ' + adj[num]
+    return nouns[num] + ' ' + verbs[num] + ' ' + adv[num] + ' ' + adj[num] + " "
 
 
 def generate_sentence():
