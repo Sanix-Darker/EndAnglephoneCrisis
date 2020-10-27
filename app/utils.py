@@ -3,16 +3,8 @@ from os import system
 from random import randint, shuffle, randrange, sample
 import json 
 import uuid
+from app.data import *
 
-
-tweets_hashtags = [
-    "#EndAnglophoneCrisis",
-    "#KumbaMassacre",
-    "#e112233",
-]
-
-def shuffle_tuple(tup):
-    return tuple(sample(tup, len(tup)))
 
 
 def random_sentence():
@@ -21,13 +13,9 @@ def random_sentence():
     This method will return a random sentence
 
     """
-    nouns = shuffle_tuple(("War", "Fight", "Kill", "Destroy", "Massacre"))
-    verbs = shuffle_tuple(("is", "is", "is", "is", "is"))
-    adv = shuffle_tuple(("really", "absolutely", "foolishly", "horibly"))
-    adj = shuffle_tuple(("not fair.", "clueless.", "dirty.", "bad.", "stupid."))
 
     num = randrange(0,5)
-    return nouns[num] + ' ' + verbs[num] + ' ' + adv[num] + ' ' + adj[num] + " "
+    return nouns[num] + ' is ' + adv[num] + ' ' + adj[num] + " "
 
 
 def generate_sentence():
